@@ -1,91 +1,95 @@
 <html>
   <head>
-    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no"
+    />
 
     <title>React Multi Slider</title>
     <style>
-        body {
-            -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
-            padding: 25px;
-        }
+      body {
+        -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+        padding: 25px;
+      }
 
-        .horizontal-slider {
-            width: 100%;
-            max-width: 500px;
-            height: 50px;
-            margin-bottom: 10px;
-        }
+      .horizontal-slider {
+        width: 100%;
+        max-width: 500px;
+        height: 50px;
+        margin-bottom: 10px;
+      }
 
-        .vertical-slider {
-            height: 380px;
-            width: 50px;
-        }
+      .vertical-slider {
+        height: 380px;
+        width: 50px;
+      }
 
-        .handle {
-            font-size: 0.9em;
-            text-align: center;
-            background-color: black;
-            color: white;
-            cursor: pointer;
-            border-radius: 100%;
-        }
+      .handle {
+        font-size: 0.9em;
+        text-align: center;
+        background-color: black;
+        color: white;
+        cursor: pointer;
+        border-radius: 100%;
+      }
 
-        .handle.active {
-            background-color: grey;
-        }
+      .handle.active {
+        background-color: grey;
+      }
 
-        .bar {
-            background: #ddd;
-        }
+      .bar {
+        background: #ddd;
+      }
 
-        .bar.bar-1 {
-            background: #f00;
-        }
+      .bar.bar-1 {
+        background: #f00;
+      }
 
-        .bar.bar-2 {
-            background: #0f0;
-        }
+      .bar.bar-2 {
+        background: #0f0;
+      }
 
-        .horizontal-slider .bar {
-            top: 20px;
-            height: 10px;
-        }
+      .horizontal-slider .bar {
+        top: 20px;
+        height: 10px;
+      }
 
-        .horizontal-slider .handle {
-            width: 50px;
-            height: 50px;
-            line-height: 50px;
-            margin-left: -25px;
-        }
+      .horizontal-slider .handle {
+        width: 50px;
+        height: 50px;
+        line-height: 50px;
+        margin-left: -25px;
+      }
 
-        .vertical-slider .handle {
-            width: 50px;
-            line-height: 50px;
-        }
+      .vertical-slider .handle {
+        width: 50px;
+        line-height: 50px;
+      }
 
-        .vertical-slider .bar {
-            left: 20px;
-            width: 10px;
-        }
+      .vertical-slider .bar {
+        left: 20px;
+        width: 10px;
+      }
 
-        .input {
-          display: none;
-        }
+      .input {
+        display: none;
+      }
 
-        #horizontal-0,
-        #horizontal-1, #horizontal-2, #horizontal-3,
-        #vertical {
-            margin: 20px 10px;
-        }
+      #horizontal-0,
+      #horizontal-1,
+      #horizontal-2,
+      #horizontal-3,
+      #vertical {
+        margin: 20px 10px;
+      }
 
-        #horizontal-2 .bar.bar-2 {
-            background: #ddd;
-        }
-
+      #horizontal-2 .bar.bar-2 {
+        background: #ddd;
+      }
     </style>
   </head>
   <body>
     <div id="root"></div>
-	<script src="/static/bundle.js"></script>
+    <script src="/static/bundle.js"></script>
   </body>
 </html>

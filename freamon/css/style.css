@@ -1,0 +1,174 @@
+@font-face {
+    font-family: 'BebasNeueRegular';
+    src: url('./fonts/BebasNeue-webfont.eot');
+    src: url('./fonts/BebasNeue-webfont.eot?#iefix') format('embedded-opentype'),
+         url('./fonts/BebasNeue-webfont.woff') format('woff'),
+         url('./fonts/BebasNeue-webfont.ttf') format('truetype'),
+         url('./fonts/BebasNeue-webfont.svg#BebasNeueRegular') format('svg');
+    font-weight: normal;
+    font-style: normal;
+}
+@font-face {
+    font-family: 'SilkscreenNormal';
+    src: url('./fonts/slkscr-webfont.eot');
+    src: url('./fonts/slkscr-webfont.eot?#iefix') format('embedded-opentype'),
+         url('./fonts/slkscr-webfont.woff') format('woff'),
+         url('./fonts/slkscr-webfont.ttf') format('truetype'),
+         url('./fonts/slkscr-webfont.svg#SilkscreenNormal') format('svg');
+    font-weight: normal;
+    font-style: normal;
+}
+@font-face {
+    font-family: 'KomikaAxisRegular';
+    src: url('./fonts/KOMIKAX_-webfont.eot');
+    src: url('./fonts/KOMIKAX_-webfont.eot?#iefix') format('embedded-opentype'),
+         url('./fonts/KOMIKAX_-webfont.woff') format('woff'),
+         url('./fonts/KOMIKAX_-webfont.ttf') format('truetype'),
+         url('./fonts/KOMIKAX_-webfont.svg#KomikaAxisRegular') format('svg');
+    font-weight: normal;
+    font-style: normal;
+}
+@font-face {
+    font-family: 'MuseoSlab500';
+    src: url('./fonts/museo_slab_500-webfont.eot');
+    src: url('./fonts/museo_slab_500-webfont.eot?#iefix') format('embedded-opentype'),
+         url('./fonts/museo_slab_500-webfont.woff') format('woff'),
+         url('./fonts/museo_slab_500-webfont.ttf') format('truetype'),
+         url('./fonts/museo_slab_500-webfont.svg#MuseoSlab500') format('svg');
+    font-weight: normal;
+    font-style: normal;
+}
+@font-face {
+    font-family: 'CodeProDemoRegular';
+    src: url('./fonts/code_pro_demo-webfont.eot');
+    src: url('./fonts/code_pro_demo-webfont.eot?#iefix') format('embedded-opentype'),
+         url('./fonts/code_pro_demo-webfont.woff') format('woff'),
+         url('./fonts/code_pro_demo-webfont.ttf') format('truetype'),
+         url('./fonts/code_pro_demo-webfont.svg#CodeProDemoRegular') format('svg');
+    font-weight: normal;
+    font-style: normal;
+}
+
+.red {color:#dd0a0a;}
+
+html,body {}
+body {background:#bfbfbf; cursor:default; overflow:hidden
+-webkit-touch-callout: none;
+-webkit-user-select: none;
+-khtml-user-select: none;
+-moz-user-select: none;
+-ms-user-select: none;
+-o-user-select: none;
+}
+.check {position:absolute; top:0; left:0; width:100%; height:100%; z-index:9999; background:#000}
+.check .logo { width:120px; margin:10px}
+.check p {color:#fff; font-family:'Yanone Kaffeesatz'; font-weight:300; font-size:36px; margin:10px;}
+.header-wrapper {position:fixed; top:0; left:0; width:100%; z-index:30; background:#fff; padding-bottom:1px; border-bottom:2px solid #000; cursor:pointer; }
+.header { height:22px; background:#000; overflow:hidden; cursor:default;}
+.header p {font-family:Arial; font-size:10px; color:#fff; margin-top:5px; margin-left:5px; }
+.header-link {color:#fff; display:inline-block; margin:4px 0 0 15px; font-family:Arial; font-size:12px; text-decoration:none;}
+.port{width:4320px; height:9600px; margin-bottom:-166px; position:relative; z-index:10; }
+.background {width:4320px; height:9600px; position:absolute; top:0; left:0; z-index:1; background:#fff}
+.grid {display:none}
+.quadrant {float:left; width:479px; height:479px; border-right:1px dashed #bfbfbf; border-bottom:1px dashed #bfbfbf; position:relative;}
+.length {font-family:Arial; font-size:12px; text-align:center; background-color:#fff; color:#bfbfbf; position:absolute;}
+.y-length {left:455px; top:20px; width:50px;}
+.x-length {left:20px; top:473px;}
+
+.notes {position:absolute; top:0; left:0; width:4320px; height:9600px; z-index:3; }
+.ui { position:fixed; z-index:30; top:25px; left:0; }
+.dots { margin-top:8px; margin-left:8px; }
+.dot {background:#000; width:28px; height:28px; -moz-border-radius:14px; border-radius:14px; margin-bottom:5px; position:relative; cursor:pointer;}
+.dot-active, .dot-temp-active {background: #dd0a0a!important;}
+.dot:hover {background: #dd0a0a;}
+.dot img {max-width:28px; max-height:28px;}
+.dot p {text-align:center; font-family:'BebasNeueRegular'; font-size:28px; color:#fff; position:relative; top:2px;}
+.dot-tooltip {display:none; height:25px; width:300px; background:url('../images/tooltip_arrow.png') center left no-repeat; -moz-border-radius: 2px; border-radius: 2px; }
+.dot-tooltip .text {display:block; margin-left:10px; margin-bottom:8px; background:#000; display:inline-block; height:24px; width:auto; padding:1px 10px 0 5px; color:#fff; font-family:'Yanone Kaffeesatz'; font-weight:300;  font-size:20px;
+-moz-border-radius-topleft: 0px;
+-moz-border-radius-topright: 3px;
+-moz-border-radius-bottomright: 3px;
+-moz-border-radius-bottomleft: 0px;
+border-top-left-radius: 0px;
+border-top-right-radius: 3px;
+border-bottom-right-radius: 3px;
+border-bottom-left-radius: 0px;}
+
+.pins {position:fixed; top:25px; right:0px; z-index:30; margin-right:8px; display:none;}
+.pins .dot {float:right; clear:right; width:42px; height:42px; -moz-border-radius:21px; border-radius:21px;}
+.pins .dot img {max-width:100%; max-height:100%}
+.pins .dot-tooltip {background:url('../images/tooltip_arrow_right.png') center right no-repeat;}
+.pins .dot-tooltip .text {float:right; text-align:right; margin-right:10px; margin-left:0px; padding:1px 5px 0 10px;
+-moz-border-radius-topleft: 3px;
+-moz-border-radius-topright: 0px;
+-moz-border-radius-bottomright: 0px;
+-moz-border-radius-bottomleft: 3ppx;
+border-top-left-radius: 3px;
+border-top-right-radius: 0px;
+border-bottom-right-radius: 0px;
+border-bottom-left-radius: 3px;}
+.pins .dot-tooltip .dot { width:28px; height:28px; -moz-border-radius:14px; border-radius:14px; }
+.pin-google {background:#6688ee;}
+.pin-facebook {background:#3b5998;}
+.pin-twitter {background:#13c3ff;}
+
+.tooltip {display:none; width:auto; white-space: nowrap; padding:1px 4px 2px 4px; color:#fff; font-family:'Yanone Kaffeesatz'; font-weight:300;  font-size:14px; background:#000; text-align:center; z-index:25; -moz-border-radius: 3px; border-radius: 3px;}
+
+.intro {position:absolute; top:100px; left:82px; z-index:2;}
+.intro p { font-family:'BebasNeueRegular'; color:#bfbfbf; }
+.intro-welcome { font-size:108px; line-height:86px;}
+.intro-tip { font-size:66px; line-height:58px;}
+.intro-hint {font-size:32px; line-height:28px; margin-bottom:3px;}
+
+.note-template {display:none;}
+.note-wrapper {width:200px; height:200px; position:absolute; top:100px; left:50px; background-color: #000; display:none;}
+.note-header {position:absolute; top:0px; right:-19px; width:16px; height:100px; display:none;}
+.note-button {width:16px; height:16px; margin-bottom:4px; float:left; background:#fff; cursor:pointer; -moz-border-radius:8px; border-radius:8px; position:relative;}
+.note-button img {width:100%; height:100%;}
+.note-scale, .ui-resizable-se {position:absolute; height:15%; width:15%; bottom:0; right:0; cursor:se-resize; z-index:inherit;}
+.note {color:#fff; font-family:BebasNeueRegular; font-size:72px; line-height:60px; padding:5%; overflow:hidden;}
+.note-text { word-wrap:break-word; cursor:default; text-transform:uppercase;}
+.note-text a {color:#fff; text-decoration:underline;}
+.note-input {display:none; padding:0; width:180px; height:180px; border:none; background:transparent; color:#fff; font-family:BebasNeueRegular; overflow:hidden; resize:none; text-transform:uppercase;}
+.note-input:focus { outline:none; border:1px dashed rgba(255,255,255,.5); margin-top:-1px; margin-left:-1px;}
+#btn-complete {display:none}
+
+.bar-wrapper{border-top: 4px solid #000; padding-top:2px; background-color:#fff; width:100%; position:fixed; bottom:0; left:0; z-index:20; cursor:pointer; overflow:hidden; display:none;}
+.bar {height:125px; width:9999px; background-color:#000; cursor:default;}
+.block {position:relative; float:left; width:439px; height:95px; padding:0 20px; margin:15px 0; border-right:1px solid #808080}
+.block-hide {position:absolute; top:0; right:10px; width:12px; height:12px; cursor:pointer; background:url('../images/hide.png') no-repeat; display:none}
+.logo {width:420px }
+
+.menu {list-style:none; font-family:Arial; font-size:12px; font-style:italic}
+.menu li {margin-bottom:6px}
+.menu li a {color:#000; background:#fff; padding:3px 6px; text-decoration:none; display:inline-block; -moz-border-radius: 4px; border-radius: 4px; z-index:1002;}
+.menu li a:hover {}
+.question {font-family:'Droid Serif'; text-transform:uppercase; color:#fff; font-size:12px; letter-spacing:2px; margin-bottom:10px}
+.version {font-family:Arial; color:#808080; margin-top:8px; font-size:10px; }
+.version a {color:#fff; text-decoration:none;}
+.quote {font-family:Droid Serif; font-style:italic; color:#fff; position:relative; top:-8px;}
+.quote-sign {display:inline-block; width:20px; margin-left:10px; height:32px; position:relative; top:0px; left:-15px;}
+.quote-sign p {position:absolute; font-size:72px; color:#444;}
+.quote-text {font-size:32px;}
+
+.ui-dialog {display:none; background:#000; color:#fff; font-family:'Yanone Kaffeesatz'; font-weight:300; -moz-border-radius: 5px; border-radius: 5px; border-bottom-right-radius:50px; -moz-border-radius-bottomright:50px; padding:10px; }
+.ui-dialog-titlebar {font-size:20px; border-bottom:1px solid #fff; padding-bottom:5px; text-transform:uppercase;}
+.ui-icon-closethick  {width:12px; height:12px; margin:3px; float:right; text-indent: -99999px; overflow:hidden; background:url('../images/hide.png') no-repeat;}
+.ui-dialog-content {font-size:16px; letter-spacing:none; margin-top:2px; padding-top:5px; font-family: Arial, serif; font-size:12px; line-height:15px; }
+.ui-dialog-buttonset{height:24px;}
+.ui-button {background:none; border:none; font-family:BebasNeueRegular; font-size:18px; color:#fff; padding:0; margin-right:10px; cursor:pointer;}
+.ui-button:focus { outline: none; }
+.ui-widget-overlay {position:absolute; top:0; left:0; background-color:rgba(255,255,255,.3); }
+.ui-dialog input {margin: 10px 0;}
+
+a {text-decoration:none}
+.logo {
+	font-family: 'Yanone Kaffeesatz', sans-serif;
+	font-size: 84px;
+	text-decoration: none;
+	text-transform: uppercase;
+	letter-spacing:12px;
+	color: #fff;
+	margin-bottom:-8px;
+}
+

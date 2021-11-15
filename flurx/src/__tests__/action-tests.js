@@ -1,36 +1,36 @@
-jest.dontMock('../action.js');
-jest.dontMock('../store.js');
+jest.dontMock("../action.js");
+jest.dontMock("../store.js");
 
-describe('the universe', () => {
-  it('should exist', () => {
+describe("the universe", () => {
+  it("should exist", () => {
     expect(true).toBe(true);
   });
 });
 
-describe('Action', () => {
-  const Action = require('../action.js');
+describe("Action", () => {
+  const Action = require("../action.js");
 
-  it('should exist', () => {
+  it("should exist", () => {
     expect(Action).toBeDefined();
   });
 
-  it('should create an action', () => {
+  it("should create an action", () => {
     const TestAction = Action.create();
     expect(TestAction).toBeDefined();
   });
 
   it("should notify listeners when called", () => {
     const TestAction = Action.create();
-    TestAction.subscribe(params => {
-      expect(params[0]).toEqual('Test');
+    TestAction.subscribe((params) => {
+      expect(params[0]).toEqual("Test");
       expect(params[1]).toEqual(1);
       expect(params[2]).toBeUndefined();
     });
-    TestAction('Test', 1);
+    TestAction("Test", 1);
   });
 
   it("should wait for stores", () => {
-    const Store = require('../store.js');
+    const Store = require("../store.js");
 
     const TestAction = Action.create();
 
@@ -41,14 +41,14 @@ describe('Action', () => {
     const storeB = new Store();
 
     storeA.register(TestAction, (value, name, nr) => {
-      expect(name).toEqual('Test');
+      expect(name).toEqual("Test");
       expect(nr).toEqual(2);
       calledA = true;
       return value;
     });
 
     storeB.register(TestAction, (value, name, nr) => {
-      expect(name).toEqual('Test');
+      expect(name).toEqual("Test");
       expect(nr).toEqual(2);
       calledB = true;
       return value;
@@ -58,6 +58,6 @@ describe('Action', () => {
       expect(calledA && calledB).toBe(true);
     });
 
-    TestAction('Test', 2);
+    TestAction("Test", 2);
   });
 });

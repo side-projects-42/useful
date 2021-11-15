@@ -1,0 +1,381 @@
+<!DOCTYPE html>
+<html>
+  <head lang="en">
+    <meta charset="utf-8" />
+
+    <title>{{ app_name }}</title>
+
+    <script
+      src="/js/vendor/jquery-1.6.1.min.js"
+      type="text/javascript"
+    ></script>
+    <script
+      src="/js/vendor/jquery-ui-1.8.12.custom.min.js"
+      type="text/javascript"
+    ></script>
+    <script
+      src="/js/vendor/jquery.tools.min.js"
+      type="text/javascript"
+    ></script>
+    <script
+      src="/js/vendor/jquery.mousewheel.min.js"
+      type="text/javascript"
+    ></script>
+    <script src="/_ah/channel/jsapi" type="text/javascript"></script>
+    <script
+      type="text/javascript"
+      src="https://apis.google.com/js/plusone.js"
+    ></script>
+    <script src="/js/typonotes.js" type="text/javascript"></script>
+
+    <script type="text/javascript">
+      /* <![CDATA[ */
+      (function () {
+        var s = document.createElement("script"),
+          t = document.getElementsByTagName("script")[0];
+        s.type = "text/javascript";
+        s.async = true;
+        s.src = "http://api.flattr.com/js/0.6/load.js?mode=auto";
+        t.parentNode.insertBefore(s, t);
+      })();
+      /* ]]> */
+    </script>
+
+    <link rel="icon" type="image/png" href="/images/favicon.ico" />
+    <link rel="shortcut icon" type="image/png" href="/images/favicon.ico" />
+
+    <link
+      rel="stylesheet"
+      href="/css/reset.css"
+      type="text/css"
+      media="screen"
+    />
+    <link
+      rel="stylesheet"
+      href="/css/style.css"
+      type="text/css"
+      media="screen"
+    />
+
+    <link
+      href="http://fonts.googleapis.com/css?family=Yanone+Kaffeesatz:light,regular"
+      rel="stylesheet"
+      type="text/css"
+    />
+    <link
+      href="http://fonts.googleapis.com/css?family=Orbitron"
+      rel="stylesheet"
+      type="text/css"
+    />
+    <link
+      href="http://fonts.googleapis.com/css?family=Droid+Serif:regular,italic"
+      rel="stylesheet"
+      type="text/css"
+    />
+
+    <meta property="og:title" content="Typonote" />
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="http://typonotes.appspot.com/" />
+    <meta
+      property="og:image"
+      content="http://typonotes.appspot.com/images/icon256.png"
+    />
+    <meta property="og:site_name" content="Typonote" />
+    <meta
+      property="og:description"
+      content="Your thoughts, structured logically."
+    />
+
+    <link
+      href="http://fonts.googleapis.com/css?family=Yanone+Kaffeesatz"
+      rel="stylesheet"
+      type="text/css"
+    />
+  </head>
+  <body>
+    <div class="version-check check">
+      <p>{{ err_browser }}</p>
+      <img class="logo" src="/images/logo.png" alt="{{ app_name }}" />
+    </div>
+    <div class="js-check check">
+      <p>{{ err_js }}</p>
+      <img class="logo" src="/images/logo.png" alt="{{ app_name }}" />
+    </div>
+    <header>
+      <div class="header-wrapper">
+        <div class="header">
+          <p>
+            Wall-name: "{{ wall_name }}" // Viewing: (<span class="viewing-num"
+              >{{ viewing_num }}</span
+            >) // <span class="error">No errors</span>
+          </p>
+        </div>
+      </div>
+    </header>
+    <section>
+      <div class="ui">
+        <div class="dots">
+          <!--<div class="dot new-wall"><img src="/images/new.png"/></div>
+					<div class="dot-tooltip">
+						<span class="text">{{ new_wall }}</span>
+					</div>-->
+
+          {% if is_login %}
+          <div class="dot connect"><img src="/images/connect.png" /></div>
+          {% else %}
+          <div class="dot connect"><p>{{ expires_in }}</p></div>
+          {% endif %}
+          <div class="dot-tooltip">
+            <span class="text">{{ connect_text }}</span>
+
+            {% if is_login_google %}
+            <a href="{{ user_link }}"
+              ><div class="dot dot-active login-google">
+                <img src="/images/login_google.png" /></div
+            ></a>
+            <div class="dot-tooltip">
+              <span class="text">{{ login_google_true }}</span>
+            </div>
+            {% else %}
+            <a href="{{ user_link }}"
+              ><div class="dot login-google">
+                <img src="/images/login_google.png" /></div
+            ></a>
+            <div class="dot-tooltip">
+              <span class="text">{{ login_google_false }}</span>
+            </div>
+            {% endif %}
+
+            <!--<div class="dot login-twitter {{ is_login_twitter }}"><img src="/images/login_twitter.png"/></div>
+						<div class="dot-tooltip"><span class="text">{{ login_twitter }}</span></div>
+						
+						<div class="dot login-facebook {{ is_login_facebook }}"><img src="/images/login_facebook.png"/></div>
+						<div class="dot-tooltip"><span class="text">{{ login_facebook }}</span></div>-->
+          </div>
+
+          <div class="dot settings"><img src="/images/settings.png" /></div>
+          <div class="dot-tooltip">
+            <span class="text">{{ settings }}</span>
+            <!--<div class="dot" id="dot-view"><img src="/images/view.png"/></div>
+						<div class="dot-tooltip"><span class="text"></span></div>			
+
+						<div class="dot" id="dot-edit"><img src="/images/edit.png"/></div>
+						<div class="dot-tooltip"><span class="text"></span></div>-->
+
+            <div class="dot" id="dot-footer">
+              <img src="/images/footer.png" />
+            </div>
+            <div class="dot-tooltip"><span class="text"></span></div>
+
+            <div class="dot" id="dot-snap"><img src="/images/snap.png" /></div>
+            <div class="dot-tooltip"><span class="text"></span></div>
+
+            <div class="dot" id="dot-grid"><img src="/images/grid.png" /></div>
+            <div class="dot-tooltip"><span class="text"></span></div>
+
+            <!--<div class="dot" id="dot-hover"><img src="/images/hover.png"/></div>
+						<div class="dot-tooltip"><span class="text"></span></div>-->
+          </div>
+
+          <!--<div class="dot delete-all"><img src="/images/deleteall.png"/></div>
+					<div class="dot-tooltip"><span class="text">{{ delete_all }}</span></div>-->
+        </div>
+        <!--<div class="dialog-new-wall" title="{{ dialog_new }}">
+					<p>{{ dialog_new_text }}</p>
+					<input class="dialog-input" type="text" name="w" />
+				</div>
+				<div class="dialog-delete-all" title="{{ dialog_delete }}">
+					<p>{{ dialog_delete_text }}</p>
+				</div>-->
+        <div class="dialog-login" title="{{ dialog_login }}"></div>
+      </div>
+      <div class="pins dots">
+        {% if is_login_google %}
+        <div class="dot pin-google pin-tasks" id="pin-tasks">
+          <img src="/images/tasks.png" />
+        </div>
+        <div class="dot-tooltip">
+          <span class="text">Send to Google Tasks</span>
+          {% if tasklists|length > 1 %} {% for tasklist in tasklists %}
+          <div
+            class="dot pin-google pin-tasks"
+            id="pin-tasks-{{ tasklist.id }}"
+          >
+            <img src="/images/tasks.png" />
+          </div>
+          <div class="dot-tooltip">
+            <span class="text">{{ tasklist.title_short }}</span>
+          </div>
+          {% endfor %} {% endif %}
+        </div>
+        {% endif %}
+        <!--<div class="dot pin-google" id="pin-calendar"><img src="/images/calendar.png"/></div>
+					<div class="dot-tooltip"><span class="text">Send to Google Calendar</span></div>
+					
+					<div class="dot pin-twitter" id="pin-twitter"><img src="/images/login_twitter.png"/></div>
+					<div class="dot-tooltip"><span class="text">Tweet!</span></div>
+					
+					<div class="dot pin-facebook" id="pin-facebook"><img src="/images/login_facebook.png"/></div>
+					<div class="dot-tooltip"><span class="text">Share on Facebook</span></div>-->
+      </div>
+      <div class="port" onselectstart="return false;">
+        <div
+          class="notes"
+          data-visitor_id="{{ visitor_id }}"
+          data-wall_id="{{ wall_id }}"
+          data-wall="{{ wall_name }}"
+          data-token="{{ token }}"
+          data-stackdown="{{ stackdown }}"
+        >
+          <div class="note-template note-wrapper">
+            <div class="note-header">
+              <div class="note-button" id="btn-font" title="Change Font">
+                <img src="images/changefont.png" />
+              </div>
+              <div class="note-button" id="btn-color" title="Change Color">
+                <img src="images/changecolor.png" />
+              </div>
+              <div class="note-button" id="btn-delete" title="Delete Note">
+                <img src="images/delete.png" />
+              </div>
+              <div class="note-button" id="btn-complete" title="Complete Task">
+                <img src="images/complete.png" />
+              </div>
+            </div>
+            <div class="note-scale"></div>
+            <div class="note">
+              <p class="note-text"></p>
+              <textarea class="note-input" maxlength="140"></textarea>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="background">
+        <div class="grid">
+          <div class="quadrant">
+            <div class="length x-length">0px</div>
+            <div class="length y-length">0px</div>
+          </div>
+        </div>
+      </div>
+    </section>
+    <footer>
+      <div class="bar-wrapper">
+        <div class="bar">
+          <div class="block">
+            <div class="block-hide"></div>
+            <a href=""><h1 class="logo">Freamon</h1></a>
+            <p class="version">
+              Version 0.1 Alpha. Powerd by
+              <a href="http://code.google.com/appengine/">Google Appengine</a>.
+            </p>
+          </div>
+          <div class="block">
+            <div class="block-hide"></div>
+            <p class="question">&raquo;What is TYPONOTES?&laquo;</p>
+            <div class="quote">
+              <div class="quote-sign"><p>&ldquo;</p></div>
+              <a class="quote-text">Your ideas, structured logically.</a>
+              <div class="quote-sign"><p>&rdquo;</p></div>
+            </div>
+          </div>
+          <div class="block">
+            <div class="block-hide"></div>
+            <p class="question">&raquo;Find out more!&laquo;</p>
+            <ul class="menu">
+              <li><a href="http://typonotes.appspot.com/about">About</a></li>
+              <li>
+                <a href="http://typonotes.appspot.com/imprint">Imprint</a>
+              </li>
+              <li><a href="http://typonotes.appspot.com/faq">FAQ</a></li>
+            </ul>
+          </div>
+          <div class="block">
+            <div class="block-hide"></div>
+            <p class="question">&raquo;You like?&laquo;</p>
+            <iframe
+              src="http://www.facebook.com/plugins/like.php?href=http://typonotes.appspot.com&amp;layout=standard&amp;show_faces=true&amp;width=450&amp;action=like&amp;font&amp;colorscheme=light&amp;height=80"
+              scrolling="no"
+              frameborder="0"
+              style="border: none; overflow: hidden; width: 450px; height: 80px"
+              allowTransparency="true"
+            ></iframe>
+          </div>
+          <div class="block">
+            <div class="block-hide"></div>
+            <p class="question">&raquo;What is TYPONOTES?&laquo;</p>
+            <div class="quote">
+              <div class="quote-sign"><p>&ldquo;</p></div>
+              <a class="quote-text">A shared, digital fridge door.</a>
+              <div class="quote-sign"><p>&rdquo;</p></div>
+            </div>
+          </div>
+          <div class="block">
+            <div class="block-hide"></div>
+            <p class="question">&raquo;A wild +1 Button appears!&laquo;</p>
+            <g:plusone
+              href="http://typonotes.appspot.com"
+              size="tall"
+            ></g:plusone>
+          </div>
+          <div class="block">
+            <div class="block-hide"></div>
+            <p class="question">&raquo;Why TYPONOTES?&laquo;</p>
+            <div class="quote">
+              <div class="quote-sign"><p>&ldquo;</p></div>
+              <a class="quote-text">Because typography matters.</a>
+              <div class="quote-sign"><p>&rdquo;</p></div>
+            </div>
+          </div>
+          <div class="block">
+            <div class="block-hide"></div>
+            <p class="question">&raquo;Want to buy me a coffee?&laquo;</p>
+            <a
+              class="FlattrButton"
+              style="display: none"
+              href="http://typonotes.appspot.com/"
+            ></a>
+            <noscript
+              ><a
+                href="http://flattr.com/thing/337588/Typonote"
+                target="_blank"
+              >
+                <img
+                  src="http://api.flattr.com/button/flattr-badge-large.png"
+                  alt="Flattr this"
+                  title="Flattr this"
+                  border="0" /></a
+            ></noscript>
+          </div>
+          <div class="block">
+            <div class="block-hide"></div>
+            <p class="question">&raquo;Want to buy me more coffee?&laquo;</p>
+            <form action="https://www.paypal.com/cgi-bin/webscr" method="post">
+              <input type="hidden" name="cmd" value="_s-xclick" />
+              <input
+                type="hidden"
+                name="encrypted"
+                value="-----BEGIN PKCS7-----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-----END PKCS7-----
+							"
+              />
+              <input
+                type="image"
+                src="https://www.paypalobjects.com/en_US/i/btn/btn_donate_LG.gif"
+                border="0"
+                name="submit"
+                alt="PayPal - The safer, easier way to pay online!"
+              />
+              <img
+                alt=""
+                border="0"
+                src="https://www.paypalobjects.com/de_DE/i/scr/pixel.gif"
+                width="1"
+                height="1"
+              />
+            </form>
+          </div>
+        </div>
+      </div>
+    </footer>
+  </body>
+</html>

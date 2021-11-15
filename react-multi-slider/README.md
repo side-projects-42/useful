@@ -1,5 +1,4 @@
-React Multi Slider
-==================
+# React Multi Slider
 
 CSS agnostic slider component for React
 

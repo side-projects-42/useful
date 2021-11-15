@@ -1,4 +1,4 @@
-import Rx from 'rx';
+import Rx from "rx";
 
 function id(x) {
   return x;
@@ -10,8 +10,8 @@ class Store extends Rx.BehaviorSubject {
   }
 
   register(action, callback) {
-    return action.subscribe(params =>
-        this.onNext((callback || id).call(this, this.getValue(), ...params))
+    return action.subscribe((params) =>
+      this.onNext((callback || id).call(this, this.getValue(), ...params))
     );
   }
 }

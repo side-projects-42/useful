@@ -11,7 +11,5 @@
     "react/react-in-jsx-scope": 2,
     "comma-dangle": [2, "always-multiline"]
   },
-  "plugins": [
-    "react"
-  ]
+  "plugins": ["react"]
 }

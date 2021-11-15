@@ -1,0 +1,51 @@
+# binary tree
+
+write tests for RecordStore, including benchmarks
+
+implement
+
+balance?
+
+---
+
+revisit setImmediate
+- *-exception-order race condition
+  - on some it's not even a race condition, like idbcursor ones seem to always fail, but idbobjectstore ones are intermittent
+
+test that IDBObjectStore.index returns the same or different IDBIndex depending on situation http://www.w3.org/TR/2015/REC-IndexedDB-20150108/#widl-IDBObjectStore-index-IDBIndex-DOMString-name
+
+Other tests
+- ideally run these in the browser (and w3c original ones too)
+  - https://chromium.googlesource.com/chromium/blink/+/72fef91ac1ef679207f51def8133b336a6f6588f/LayoutTests/storage/indexeddb
+  - https://github.com/mozilla/gecko-dev/tree/master/dom/indexedDB/test
+
+multiple readonly transactions should be allowed to run at the same time (but not readwrite, they should be all alone)
+
+readonly properties need to actually be readonly
+- done in FDBCursor
+- typescript annotation is easier (like in FDBKeyRange), but not actually binding for compiled JS version
+
+share some code between Index and ObjectStore, like getValue, confirmActiveTransaction, count
+- similar thing between open and deleteDatabase
+- generic functions to update indexNames and objectStoreNames
+
+break events stuff into separate module, maybe fakeDOMEvents
+- readonly properties? hidden/non-enumerable properties?
+
+go through and fix all the left comments (todo stuff)
+
+_ properties should be hidden from standard functions
+- object.defineProperty enumerable?
+
+For .filter calls that are deleting items from arrays (such as ObjectStore.deleteRecord) it might be faster to use splice as iterating over the array
+
+btree? slice to add to middle of array is slow http://jsperf.com/splicing-a-single-value/19
+- probably best: http://goneill.co.nz/btree.php
+- https://github.com/santanubasu/BPlusJS
+- http://www.conquex.com/b-tree-javascript-implementation/
+
+what if my backend data storage was async? should make it easier to plug-and-play things besides JS objects
+
+findIndex (and similar) could be replaced by smarter searches, like binary search if we know the list is sorted
+- Given an array sorted in ascending order, find the lowest value of i where array[i] >= x
+  - use this to replace findIndex in storeInIndex in Index.js

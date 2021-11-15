@@ -1,4 +1,4 @@
-import Immutable from 'immutable';
+import Immutable from "immutable";
 
 function ensureArray(x) {
   if (x == null) return [];
@@ -12,7 +12,7 @@ function NestableRecord(defaultValues, types, name) {
     if (values instanceof _RecordType) return values;
 
     const _values = values || defaultValues;
-    const newValues = {..._values};
+    const newValues = { ..._values };
 
     for (let key in types) {
       const _value = _values[key];
@@ -24,7 +24,7 @@ function NestableRecord(defaultValues, types, name) {
         const res = type[i](v);
 
         if (type[i + 1]) {
-          return res.map(x => f(i + 1, x));
+          return res.map((x) => f(i + 1, x));
         }
 
         return res;

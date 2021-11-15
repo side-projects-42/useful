@@ -1,7 +1,7 @@
-import test from 'tape';
-import { JSONParser as Parser } from '../index.js'
+import test from "tape";
+import { JSONParser as Parser } from "../index.js";
 
-test('unvalid', function (t) {
+test("unvalid", function (t) {
   var count = 0;
 
   var p = new Parser();

@@ -1,8 +1,8 @@
-import expect from 'expect';
-import connectContext from '../src';
+import expect from "expect";
+import connectContext from "../src";
 
-describe('connectContext', () => {
-  it('should exist', () => {
-    expect(typeof connectContext !== 'undefined').toBe(true);
+describe("connectContext", () => {
+  it("should exist", () => {
+    expect(typeof connectContext !== "undefined").toBe(true);
   });
 });

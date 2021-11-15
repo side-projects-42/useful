@@ -1,14 +1,13 @@
-import React, {Component} from 'react';
-import shouldPureComponentUpdate from 'react-pure-render/function';
+import React, { Component } from "react";
+import shouldPureComponentUpdate from "react-pure-render/function";
 
-import Bar from './Bar.js';
+import Bar from "./Bar.js";
 
 class Bars extends Component {
-
-  shouldComponentUpdate = shouldPureComponentUpdate
+  shouldComponentUpdate = shouldPureComponentUpdate;
 
   render() {
-    const {value, min, max} = this.props;
+    const { value, min, max } = this.props;
 
     const lastIndex = value.length - 1;
 
@@ -19,15 +18,11 @@ class Bars extends Component {
       .filter((v, i) => i !== lastIndex)
       .map((v, i) => this._renderBar(i + 1, v, value[i + 1]));
 
-    return (
-      <span>
-        {[firstBar, ...bars, lastBar]}
-      </span>
-    );
+    return <span>{[firstBar, ...bars, lastBar]}</span>;
   }
 
   _renderBar = (i, valueFrom, valueTo) => {
-    const {min, max, barClassName, activeHandles} = this.props;
+    const { min, max, barClassName, activeHandles } = this.props;
 
     return (
       <Bar
@@ -39,9 +34,9 @@ class Bars extends Component {
         max={max}
         barClassName={barClassName}
         active={activeHandles[i] || activeHandles[i - 1]}
-        />
+      />
     );
-  }
+  };
 }
 
 export default Bars;

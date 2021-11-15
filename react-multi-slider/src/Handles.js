@@ -1,32 +1,37 @@
-import React, {Component} from 'react';
-import shouldPureComponentUpdate from 'react-pure-render/function';
+import React, { Component } from "react";
+import shouldPureComponentUpdate from "react-pure-render/function";
 
-import Handle from './Handle.js';
+import Handle from "./Handle.js";
 
 class Handles extends Component {
-
-  shouldComponentUpdate = shouldPureComponentUpdate
+  shouldComponentUpdate = shouldPureComponentUpdate;
 
   render() {
-    return (
-      <span>
-        {this._renderHandles()}
-      </span>
-    );
+    return <span>{this._renderHandles()}</span>;
   }
 
   _renderHandles = () => {
-    const {value, children} = this.props;
+    const { value, children } = this.props;
 
     if (React.Children.count(children) > 0) {
-      return React.Children.map(children, (child, i) => this._renderHandle(child, value[i], i));
+      return React.Children.map(children, (child, i) =>
+        this._renderHandle(child, value[i], i)
+      );
     }
 
     return value.map((v, i) => this._renderHandle(null, v, i));
-  }
+  };
 
   _renderHandle = (child, v, i) => {
-    const {handleClassName, handleActiveClassName, activeHandles, zIndices, min, max, disabled} = this.props;
+    const {
+      handleClassName,
+      handleActiveClassName,
+      activeHandles,
+      zIndices,
+      min,
+      max,
+      disabled,
+    } = this.props;
 
     return (
       <Handle
@@ -40,11 +45,11 @@ class Handles extends Component {
         handleClassName={handleClassName}
         handleActiveClassName={handleActiveClassName}
         disabled={disabled}
-        >
+      >
         {child}
       </Handle>
     );
-  }
+  };
 }
 
 export default Handles;

@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html>
+  <head lang="en">
+    <meta charset="utf-8" />
+
+    <title>{{ app_name }}</title>
+
+    <script src="/js/jquery-1.6.1.min.js" type="text/javascript"></script>
+    <script
+      src="/js/jquery-ui-1.8.12.custom.min.js"
+      type="text/javascript"
+    ></script>
+    <script src="/js/jquery.tools.min.js" type="text/javascript"></script>
+    <script src="/js/jquery.mousewheel.min.js" type="text/javascript"></script>
+    <script src="/_ah/channel/jsapi" type="text/javascript"></script>
+    <script src="/js/typonotes.js" type="text/javascript"></script>
+
+    <link rel="icon" type="image/png" href="/images/favicon.ico" />
+    <link rel="shortcut icon" type="image/png" href="/images/favicon.ico" />
+
+    <link
+      rel="stylesheet"
+      href="/css/reset.css"
+      type="text/css"
+      media="screen"
+    />
+    <link
+      rel="stylesheet"
+      href="/css/style.css"
+      type="text/css"
+      media="screen"
+    />
+
+    <link
+      href="http://fonts.googleapis.com/css?family=Yanone+Kaffeesatz:light,regular"
+      rel="stylesheet"
+      type="text/css"
+    />
+    <link
+      href="http://fonts.googleapis.com/css?family=Orbitron:500&v1"
+      rel="stylesheet"
+      type="text/css"
+    />
+    <link
+      href="http://fonts.googleapis.com/css?family=Droid+Serif:regular,italic"
+      rel="stylesheet"
+      type="text/css"
+    />
+
+    <meta property="og:title" content="Typonote" />
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="http://typonotes.appspot.com/" />
+    <meta
+      property="og:image"
+      content="http://typonotes.appspot.com/images/icon256.png"
+    />
+    <meta property="og:site_name" content="Typonote" />
+    <meta
+      property="og:description"
+      content="Your thoughts, structured logically."
+    />
+  </head>
+  <body>
+    <div class="version-check check">
+      <p>{{ err_browser }}</p>
+      <img class="logo" src="/images/logo.png" alt="{{ app_name }}" />
+    </div>
+    <div class="js-check check">
+      <p>{{ err_js }}</p>
+      <img class="logo" src="/images/logo.png" alt="{{ app_name }}" />
+    </div>
+    <section>
+      <div class="port" onselectstart="return false;">
+        <div
+          class="notes"
+          data-visitor_id="{{ visitor_id }}"
+          data-wall_id="{{ wall_id }}"
+          data-wall="{{ wall_name }}"
+          data-token="{{ token }}"
+          data-stackdown="{{ stackdown }}"
+        >
+          <div class="note-template note-wrapper">
+            <div class="note-header">
+              <div class="note-button" id="btn-font" title="Change Font">
+                <img src="images/changefont.png" />
+              </div>
+              <div class="note-button" id="btn-color" title="Change Color">
+                <img src="images/changecolor.png" />
+              </div>
+              <div class="note-button" id="btn-delete" title="Delete Note">
+                <img src="images/delete.png" />
+              </div>
+              <div class="note-button" id="btn-complete" title="Complete Task">
+                <img src="images/complete.png" />
+              </div>
+            </div>
+            <div class="note-scale"></div>
+            <div class="note">
+              <p class="note-text"></p>
+              <textarea class="note-input" maxlength="140"></textarea>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="background">
+        <div class="grid">
+          <div class="quadrant">
+            <div class="length x-length">0px</div>
+            <div class="length y-length">0px</div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </body>
+</html>

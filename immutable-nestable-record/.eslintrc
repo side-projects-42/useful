@@ -15,7 +15,5 @@
     "no-eq-null": 0,
     "comma-dangle": [2, "always-multiline"]
   },
-  "plugins": [
-    "react"
-  ]
+  "plugins": ["react"]
 }

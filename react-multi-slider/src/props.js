@@ -1,4 +1,4 @@
-import {PropTypes} from 'react';
+import { PropTypes } from "react";
 
 export const propTypes = {
   /**
@@ -48,7 +48,7 @@ export const propTypes = {
   /**
    * Determines whether the slider moves horizontally (from left to right) or vertically (from top to bottom).
    */
-  orientation: PropTypes.oneOf(['horizontal', 'vertical']),
+  orientation: PropTypes.oneOf(["horizontal", "vertical"]),
 
   /**
    * The css class set on the slider node.
@@ -140,17 +140,17 @@ export const defaultProps = {
   step: 1,
   minDistance: 0,
   defaultValue: 0,
-  orientation: 'horizontal',
-  className: 'slider',
+  orientation: "horizontal",
+  className: "slider",
   style: null,
-  handleClassName: 'handle',
-  handleActiveClassName: 'active',
-  barClassName: 'bar',
+  handleClassName: "handle",
+  handleActiveClassName: "active",
+  barClassName: "bar",
   withBars: false,
   pearling: false,
   disabled: false,
   snapDragDisabled: false,
   invert: false,
   withoutInputFields: false,
-  inputFieldClassName: 'input',
+  inputFieldClassName: "input",
 };

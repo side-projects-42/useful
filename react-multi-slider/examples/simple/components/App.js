@@ -1,16 +1,15 @@
-import React, { Component } from 'react';
-import MultiSlider from '../../../src/index.js';
+import React, { Component } from "react";
+import MultiSlider from "../../../src/index.js";
 
 export default class App extends Component {
-
-  state = {value: [0.25, 0.5, 0.75]}
+  state = { value: [0.25, 0.5, 0.75] };
 
   onChange = (value) => {
-    this.setState({value});
-  }
+    this.setState({ value });
+  };
 
   render() {
-    const {value} = this.state;
+    const { value } = this.state;
     const [fst, snd, trd] = value;
 
     return (
@@ -27,7 +26,7 @@ export default class App extends Component {
           onChange={this.onChange}
           withBars
           pearling
-          >
+        >
           <div>{fst}</div>
           <div>{snd}</div>
           <div>{trd}</div>

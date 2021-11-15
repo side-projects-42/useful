@@ -1,14 +1,22 @@
-import React, {Component} from 'react';
-import shouldPureComponentUpdate from 'react-pure-render/function';
+import React, { Component } from "react";
+import shouldPureComponentUpdate from "react-pure-render/function";
 
 // import propTypes from './propTypes';
 
 class InputField extends Component {
-
-  shouldComponentUpdate = shouldPureComponentUpdate
+  shouldComponentUpdate = shouldPureComponentUpdate;
 
   render() {
-    const {value, index, name, disabled, inputFieldClassName, min, max, step} = this.props;
+    const {
+      value,
+      index,
+      name,
+      disabled,
+      inputFieldClassName,
+      min,
+      max,
+      step,
+    } = this.props;
 
     return (
       <input
@@ -22,7 +30,7 @@ class InputField extends Component {
         max={max}
         step={step}
         readOnly
-        />
+      />
     );
   }
 }

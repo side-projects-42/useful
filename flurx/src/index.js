@@ -1,4 +1,4 @@
-import Action from './action.js';
-import Store from './store.js';
+import Action from "./action.js";
+import Store from "./store.js";
 
-export default {Action, Store};
+export default { Action, Store };

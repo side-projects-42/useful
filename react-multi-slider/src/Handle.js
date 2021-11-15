@@ -1,7 +1,7 @@
-import React, {PropTypes, Component} from 'react';
-import shouldPureComponentUpdate from 'react-pure-render/function';
+import React, { PropTypes, Component } from "react";
+import shouldPureComponentUpdate from "react-pure-render/function";
 
-import {pauseEvent, stopPropagation} from './common';
+import { pauseEvent, stopPropagation } from "./common";
 
 const SHIFT_MULTIPLIER = 10;
 
@@ -18,8 +18,7 @@ function removeHandlers(eventMap) {
 }
 
 class Handle extends Component {
-
-  shouldComponentUpdate = shouldPureComponentUpdate
+  shouldComponentUpdate = shouldPureComponentUpdate;
 
   static contextTypes = {
     invert: PropTypes.bool,
@@ -37,10 +36,17 @@ class Handle extends Component {
 
     _getMousePosition: PropTypes.func,
     _getTouchPosition: PropTypes.func,
-  }
+  };
 
   render() {
-    const {index, handleClassName, handleActiveClassName, disabled, children, active} = this.props;
+    const {
+      index,
+      handleClassName,
+      handleActiveClassName,
+      disabled,
+      children,
+      active,
+    } = this.props;
 
     // console.log(`Render handle ${i}`);
 
@@ -53,36 +59,36 @@ class Handle extends Component {
       <div
         className={className}
         style={style}
-        tabIndex={disabled ? null : '0'}
+        tabIndex={disabled ? null : "0"}
         onMouseDown={disabled ? null : this._onMouseDown}
         onTouchStart={disabled ? null : this._onTouchStart}
         onFocus={disabled ? null : this._onFocus}
         onBlur={disabled ? null : this._onBlur}
         onKeyDown={disabled ? null : this._onKeyDown}
-        >
+      >
         {children}
       </div>
     );
   }
 
   _buildHandleStyle = () => {
-    const {value, min, max, zIndex, active} = this.props;
-    const {_posMinKey} = this.context;
+    const { value, min, max, zIndex, active } = this.props;
+    const { _posMinKey } = this.context;
 
     const posMinKey = _posMinKey();
-    const offset = value / (max - min) * 100;
+    const offset = (value / (max - min)) * 100;
 
     return {
       zIndex,
-      position: 'absolute',
-      willChange: active ? posMinKey : '',
+      position: "absolute",
+      willChange: active ? posMinKey : "",
       [posMinKey]: `${offset}%`,
     };
-  }
+  };
 
   // start onStart
   _onMouseDown = (e) => {
-    const {_getMousePosition} = this.context;
+    const { _getMousePosition } = this.context;
     const [position] = _getMousePosition(e);
 
     addHandlers(this._mouseEventMap);
@@ -90,10 +96,10 @@ class Handle extends Component {
     pauseEvent(e);
 
     this._onStart(position, e);
-  }
+  };
 
   _onTouchStart = (e) => {
-    const {_getTouchPosition} = this.context;
+    const { _getTouchPosition } = this.context;
 
     // TODO: remove when todo above is implemented
     if (e.touches.length > 1) return;
@@ -109,22 +115,22 @@ class Handle extends Component {
     stopPropagation(e);
 
     this._onStart(position, e);
-  }
+  };
 
   _onStart = (position, e) => {
     if (this.onStart) this.onStart(position, e);
-  }
+  };
   // end onStart
 
   // being onMove
   _onMouseMove = (e) => {
-    const {_getMousePosition} = this.context;
+    const { _getMousePosition } = this.context;
     const [position] = _getMousePosition(e);
     this._onMove(position);
-  }
+  };
 
   _onTouchMove = (e) => {
-    const {_getTouchPosition} = this.context;
+    const { _getTouchPosition } = this.context;
 
     // FIXME: find out if "nearest" touch is still there
     if (e.touches.length > 1) return;
@@ -132,7 +138,7 @@ class Handle extends Component {
     const [positionMainDir, positionScrollDir] = _getTouchPosition(e);
     const [startPositionMainDir, startPositionScrollDir] = this._startPositions;
 
-    if (typeof this._isScrolling === 'undefined') {
+    if (typeof this._isScrolling === "undefined") {
       const diffMainDir = positionMainDir - startPositionMainDir;
       const diffScrollDir = positionScrollDir - startPositionScrollDir;
       this._isScrolling = Math.abs(diffScrollDir) > Math.abs(diffMainDir);
@@ -146,31 +152,31 @@ class Handle extends Component {
     pauseEvent(e);
 
     this._onMove(positionMainDir, e);
-  }
+  };
 
   _onMove = (position, e) => {
     if (this.onMove) this.onMove(position, e);
-  }
+  };
   // end onMove
 
   // begin onEnd
   _onMouseUp = (e) => {
     this._onEnd(this._mouseEventMap, e);
-  }
+  };
 
   _onTouchEnd = (e) => {
     this._onEnd(this._touchEventMap, e);
-  }
+  };
 
   _onEnd = (eventMap, e) => {
     removeHandlers(eventMap);
     if (this.onEnd) this.onEnd(e);
-  }
+  };
   // end onEnd
 
   onStart = (position) => {
-    const {value, index} = this.props;
-    const {_measureSlider, _start} = this.context;
+    const { value, index } = this.props;
+    const { _measureSlider, _start } = this.context;
 
     // TODO: find out if necessary with tabindex
     // if activeElement is body window will lost focus in IE9
@@ -178,54 +184,54 @@ class Handle extends Component {
       document.activeElement.blur();
     }
 
-    const {sliderLength} = _measureSlider();
+    const { sliderLength } = _measureSlider();
 
     this._startValue = value;
     this._startPosition = position;
     this._sliderLength = sliderLength;
 
     _start(index);
-  }
+  };
 
   onMove = (position) => {
-    const {_sliderLength, _startPosition, _startValue} = this;
-    const {index, min, max} = this.props;
-    const {invert, _move} = this.context;
+    const { _sliderLength, _startPosition, _startValue } = this;
+    const { index, min, max } = this.props;
+    const { invert, _move } = this.context;
 
     let diffPosition = position - _startPosition;
 
     // FIXME: don't depend on invert (and don't pass via context)
     if (invert) diffPosition *= -1;
 
-    const diffValue = diffPosition / _sliderLength * (max - min);
+    const diffValue = (diffPosition / _sliderLength) * (max - min);
 
     _move(index, _startValue + diffValue);
-  }
+  };
 
   onEnd = () => {
-    const {index} = this.props;
-    const {_end} = this.context;
+    const { index } = this.props;
+    const { _end } = this.context;
 
     _end(index);
-  }
+  };
 
   _onFocus = () => {
-    const {index} = this.props;
-    const {_start} = this.context;
+    const { index } = this.props;
+    const { _start } = this.context;
 
     _start(index);
-  }
+  };
 
   _onBlur = () => {
-    const {index} = this.props;
-    const {_end} = this.context;
+    const { index } = this.props;
+    const { _end } = this.context;
 
     _end(index);
-  }
+  };
 
-  _onKeyDown = ({which, shiftKey}) => {
-    const {value, index} = this.props;
-    const {step, _incKey, _decKey, _move} = this.context;
+  _onKeyDown = ({ which, shiftKey }) => {
+    const { value, index } = this.props;
+    const { step, _incKey, _decKey, _move } = this.context;
 
     const diffValue = step * (shiftKey ? SHIFT_MULTIPLIER : 1);
 
@@ -234,25 +240,25 @@ class Handle extends Component {
     } else if (which === _decKey()) {
       _move(index, value - diffValue);
     }
-  }
+  };
 
   _getMouseEventMap = () => {
     return [
-      ['mousemove', this._onMouseMove],
-      ['mouseup', this._onMouseUp],
+      ["mousemove", this._onMouseMove],
+      ["mouseup", this._onMouseUp],
     ];
-  }
+  };
 
   _getTouchEventMap = () => {
     return [
-      ['touchmove', this._onTouchMove],
-      ['touchend', this._onTouchEnd],
+      ["touchmove", this._onTouchMove],
+      ["touchend", this._onTouchEnd],
     ];
-  }
+  };
 
-  _mouseEventMap = this._getMouseEventMap()
+  _mouseEventMap = this._getMouseEventMap();
 
-  _touchEventMap = this._getTouchEventMap()
+  _touchEventMap = this._getTouchEventMap();
 }
 
 export default Handle;

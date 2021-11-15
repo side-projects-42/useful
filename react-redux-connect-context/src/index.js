@@ -1,5 +1,5 @@
-import {PropTypes} from 'react';
-import {connect} from 'react-redux';
+import { PropTypes } from "react";
+import { connect } from "react-redux";
 
 function noop() {}
 
@@ -8,11 +8,10 @@ function noop() {}
 function getChildContextTypes(mapDispatchToProps) {
   const childContextTypes = {};
 
-  Object.keys(mapDispatchToProps(noop))
-    .forEach(key => {
-      // TODO: allow objectOf(func)
-      childContextTypes[key] = PropTypes.func;
-    });
+  Object.keys(mapDispatchToProps(noop)).forEach((key) => {
+    // TODO: allow objectOf(func)
+    childContextTypes[key] = PropTypes.func;
+  });
 
   return childContextTypes;
 }
@@ -20,7 +19,7 @@ function getChildContextTypes(mapDispatchToProps) {
 // Put the all action creators in props (like a the `connect` function does),
 // but also "save" them in an `actionCreators` object.
 function wrapDispatchToProps(mapDispatchToProps) {
-  return dispatch => {
+  return (dispatch) => {
     const actionCreators = mapDispatchToProps(dispatch);
     return {
       actionCreators,
@@ -39,7 +38,10 @@ function overwriteGetChildContext(component) {
 
   // using `function` so that `this` points to the actual instance of the component.
   component.prototype.getChildContext = function getChildContext() {
-    return Object.assign(originalGetChildContext.call(this), this.props.actionCreators);
+    return Object.assign(
+      originalGetChildContext.call(this),
+      this.props.actionCreators
+    );
   };
 }
 
@@ -55,7 +57,7 @@ export default function connectContext(mapStateToProps, mapDispatchToProps) {
   const childContextTypes = getChildContextTypes(mapDispatchToProps);
   const wrappedMapDispatchToProps = wrapDispatchToProps(mapDispatchToProps);
 
-  return component => {
+  return (component) => {
     overwriteChildContextTypes(component, childContextTypes);
     overwriteGetChildContext(component);
     return connect(mapStateToProps, wrappedMapDispatchToProps)(component);

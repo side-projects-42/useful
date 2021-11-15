@@ -1,0 +1,35 @@
+{
+  "name": "jsonparse2",
+  "description": "A streaming JSON parser written in pure JavaScript for the browser, Deno, Cloudflare Workers, etc",
+  "tags": [
+    "json",
+    "stream"
+  ],
+  "version": "1.0.0",
+  "type": "module",
+  "author": "Florian Klampfer <mail@qwtel.com> (https://qwtel.com/)",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/qwtel/jsonparse2.git"
+  },
+  "devDependencies": {
+    "tape": "~0.1.1",
+    "tap": "~0.3.3"
+  },
+  "scripts": {
+    "test": "tap test/*.js"
+  },
+  "bugs": {
+    "url": "http://github.com/qwtel/jsonparse2/issues"
+  },
+  "license": "MIT",
+  "main": "index.js",
+  "homepage": "https://github.com/qwtel/jsonparse2#readme",
+  "directories": {
+    "test": "test"
+  },
+  "engines": {
+    "node": "> 10"
+  },
+  "dependencies": {}
+}
